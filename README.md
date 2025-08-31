@@ -94,9 +94,9 @@ print(f"Suicidal probability: {result['score']:.2f}")
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Screenshots
+## Demo
 
-![Youtube link](https://youtu.be/rVTI896q51Y)
+Watch the demo on YouTube: [Click here](https://youtu.be/rVTI896q51Y)
 
 
 
