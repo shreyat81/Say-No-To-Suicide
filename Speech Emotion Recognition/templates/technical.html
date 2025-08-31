@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmoVoice - Technical</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .comparison-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comparison-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        #comparisonImage {
+            width: 100%;
+            border-radius: 10px;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">EmoVoice</div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('technical') }}">Technical</a>
+            <a href="{{ url_for('demo') }}">Demo</a>
+            <a href="{{ url_for('about') }}">About</a>
+        </div>
+    </nav>
+
+    <!-- Technical Hero Section -->
+    <section class="technical-hero" style="background: url('{{ url_for('static', filename='IMAGES/EMOTION FACES.jpg') }}') center/cover no-repeat;">
+        <div class="hero-overlay" style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.7);"></div>
+        <div class="hero-content" style="position: relative; z-index: 1; text-align: center; color: white;">
+            <h1>Technical Architecture</h1>
+            <p>Discover the technology powering our emotion recognition system</p>
+        </div>
+    </section>
+
+    <!-- ML Models Section -->
+    <section class="tech-section ml-models" style="padding: 60px 5%;">
+        <div class="section-content">
+            <h2>Machine Learning Models</h2>
+            <div class="models-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+                <!-- Traditional ML -->
+                <div class="model-category" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+                    <h3 style="display: flex; justify-content: space-between; align-items: center;">
+                        Traditional ML
+                        <button class="comparison-btn" onclick="showComparison('traditional')">View Comparison</button>
+                    </h3>
+                    <div class="model-cards">
+                        <div class="model-card"><h4>KNN</h4><p>K-Nearest Neighbors for pattern recognition</p></div>
+                        <div class="model-card"><h4>SVM</h4><p>Support Vector Machine for classification</p></div>
+                        <div class="model-card"><h4>Decision Tree</h4><p>Tree-based model for feature analysis</p></div>
+                    </div>
+                </div>
+
+                <!-- Deep Learning -->
+                <div class="model-category" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+                    <h3 style="display: flex; justify-content: space-between; align-items: center;">
+                        Deep Learning
+                        <button class="comparison-btn" onclick="showComparison('deep')">View Results</button>
+                    </h3>
+                    <div class="model-cards">
+                        <div class="model-card"><h4>CNN</h4><p>Convolutional Neural Network for audio features</p></div>
+                        <div class="model-card"><h4>Bi-LSTM</h4><p>Bidirectional LSTM for sequential data modeling</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Modal for Images -->
+    <div class="comparison-modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeImageModal()">&times;</span>
+            <img id="comparisonImage" src="" alt="Comparison Image">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 40px 20px; background: #f9fafb; margin-top: 80px;">
+        <div class="footer-content">
+            <div class="footer-links" style="margin-bottom: 15px;">
+                <a href="{{ url_for('home') }}">Home</a> |
+                <a href="{{ url_for('technical') }}">Technical</a> |
+                <a href="{{ url_for('demo') }}">Demo</a> |
+                <a href="{{ url_for('about') }}">About</a>
+            </div>
+            <p style="font-size: 14px; color: #6b7280;">&copy; 2025 EmoVoice. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JS: Show Image Modal -->
+    <script>
+        function showComparison(type) {
+            const modal = document.getElementById('imageModal');
+            const image = document.getElementById('comparisonImage');
+
+            if (type === 'traditional') {
+                image.src = "{{ url_for('static', filename='IMAGES/Traditional.png') }}";
+            } else if (type === 'deep') {
+                image.src = "{{ url_for('static', filename='IMAGES/Deep.png') }}";
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        window.addEventListener('click', function (event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

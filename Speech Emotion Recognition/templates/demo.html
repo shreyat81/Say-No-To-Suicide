@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmoVoice - Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">EmoVoice</div>
+        <div class="nav-links">
+           <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('technical') }}">Technical</a>
+      <a href="{{ url_for('demo') }}">Demo</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('risk_dashboard') }}">Risk Dashboard</a>
+      <a href="{{ url_for('admin_panel') }}">Admin</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="demo-hero">
+        <div class="hero-overlay"></div>
+        <div class="demo-hero-content">
+            <h1>Experience EmoVoice</h1>
+            <p>Analyze speech to detect emotions accurately in real-time</p>
+        </div>
+    </section>
+
+    <!-- Main Demo Content -->
+    <main class="demo-content">
+        <!-- How It Works Section -->
+        <section class="demo-section how-it-works">
+            <div class="how-it-works-bg"></div>
+            <div class="section-content">
+                <h2>How It Works</h2>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <div class="icon-circle">
+                                <i class="icon-upload"></i>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-number">1</div>
+                            <h3>Upload Audio</h3>
+                            <p>Upload your audio file or record directly through your microphone</p>
+                        </div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <div class="icon-circle">
+                                <i class="icon-process"></i>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-number">2</div>
+                            <h3>Processing</h3>
+                            <p>Our AI analyzes the speech patterns and voice characteristics</p>
+                        </div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <div class="icon-circle">
+                                <i class="icon-result"></i>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-number">3</div>
+                            <h3>Get Results</h3>
+                            <p>Receive detailed emotion analysis with confidence scores</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Interface Section -->
+        <section class="demo-section">
+            <div class="demo-container">
+                <h2>Try EmoVoice</h2>
+                <p>Record your voice and let our AI detect your emotions</p>
+                
+                <div class="recording-section themed-upload-box">
+                    <form id="uploadForm" class="upload-form" enctype="multipart/form-data">
+                        <h3 style="margin-bottom: 1rem; color: #2d2d2d; font-weight: 600;">Upload Your Audio File</h3>
+                        <div class="audio-visualizer" aria-label="Audio visualizer" style="margin-bottom: 1rem;">
+                            <div class="bar bar1"></div>
+                            <div class="bar bar2"></div>
+                            <div class="bar bar3"></div>
+                            <div class="bar bar4"></div>
+                            <div class="bar bar5"></div>
+                        </div>
+                        <input type="file" id="audioFile" name="audio" accept="audio/*" required style="margin: 1rem 0; padding: 0.5rem; border-radius: 8px; border: 1px solid #e5e7eb; background: #f8f9fa;" />
+                        <button type="submit" class="record-btn" style="margin-top: 1rem;">Evaluate</button>
+                        <div id="uploadStatus" class="recording-status"></div>
+                    </form>
+                    <div class="result-section" style="display: none;">
+                        <div class="emotion-result">
+                            <h3>Detected Emotion:</h3>
+                            <p id="emotionText" class="emotion-text">-</p>
+                            <div class="confidence-meter">
+                                <div class="confidence-bar">
+                                    <div id="confidenceFill" class="confidence-fill"></div>
+                                </div>
+                                <span id="confidenceText" class="confidence-text">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('technical') }}">Technical</a>
+                <a href="{{ url_for('demo') }}">Demo</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </div>
+            <!-- <div class="social-links">
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">LinkedIn</a>
+            </div> -->
+            <p class="copyright">&copy; 2025 EmoVoice. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .how-it-works {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-icon {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .icon-circle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+            filter: blur(10px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .icon-upload::before {
+            content: '↑';
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .icon-process::before {
+            content: '⚡';
+            color: white;
+            font-size: 32px;
+        }
+
+        .icon-result::before {
+            content: '📊';
+            color: white;
+            font-size: 32px;
+        }
+
+        .step-content {
+            text-align: center;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #4f46e5;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .step-content h3 {
+            color: #1f2937;
+            font-size: 24px;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .step-connector {
+            width: 60px;
+            height: 2px;
+            background: #e5e7eb;
+            position: relative;
+        }
+
+        .step-connector::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #4f46e5;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 1024px) {
+            .steps-container {
+                flex-direction: column;
+                gap: 60px;
+            }
+
+            .step-connector {
+                width: 2px;
+                height: 60px;
+            }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #4f46e5;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #4f46e5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .demo-hero {
+            background: url("{{ url_for('static', filename='IMAGES/EMOTION FACES.jpg') }}") center/cover no-repeat;
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .demo-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .demo-hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .demo-hero-content p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .demo-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .recording-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .record-btn {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .record-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        .recording-status {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .result-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .emotion-result {
+            text-align: center;
+        }
+
+        .emotion-text {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin: 1rem 0;
+        }
+
+        .confidence-meter {
+            margin-top: 1rem;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .confidence-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #4f46e5);
+            transition: width 0.3s ease;
+        }
+
+        .confidence-text {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                padding: 1rem;
+            }
+
+            .recording-section {
+                padding: 1.5rem;
+            }
+        }
+
+        .themed-upload-box {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.08);
+            border: 2px solid #f0f0f0;
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-top: 2rem;
+            position: relative;
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .themed-upload-box:focus-within, .themed-upload-box:hover {
+            border-color: #6366f1;
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.15);
+        }
+        .audio-video-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .themed-upload-box {
+                padding: 1.2rem 0.5rem 1rem 0.5rem;
+            }
+            .audio-video-preview video {
+                max-width: 100%;
+            }
+        }
+        .audio-visualizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 32px;
+            gap: 6px;
+        }
+        .audio-visualizer .bar {
+            width: 8px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            animation: bounce 1.2s infinite ease-in-out;
+        }
+        .audio-visualizer .bar1 { height: 18px; animation-delay: 0s; }
+        .audio-visualizer .bar2 { height: 28px; animation-delay: 0.2s; }
+        .audio-visualizer .bar3 { height: 32px; animation-delay: 0.4s; }
+        .audio-visualizer .bar4 { height: 22px; animation-delay: 0.6s; }
+        .audio-visualizer .bar5 { height: 26px; animation-delay: 0.8s; }
+        @keyframes bounce {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.8); }
+        }
+    </style>
+
+    <script>
+        const uploadForm = document.getElementById('uploadForm');
+        const audioFileInput = document.getElementById('audioFile');
+        const uploadStatus = document.getElementById('uploadStatus');
+        const resultSection = document.querySelector('.result-section');
+        const emotionText = document.getElementById('emotionText');
+        const confidenceFill = document.getElementById('confidenceFill');
+        const confidenceText = document.getElementById('confidenceText');
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const file = audioFileInput.files[0];
+            if (!file) {
+                uploadStatus.textContent = 'Please select an audio file.';
+                return;
+            }
+            uploadStatus.textContent = 'Uploading and analyzing...';
+            const formData = new FormData();
+            formData.append('audio', file);
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    resultSection.style.display = 'block';
+                    emotionText.textContent = data.emotion;
+                    const confidence = Math.round(data.confidence * 100);
+                    confidenceFill.style.width = `${confidence}%`;
+                    confidenceText.textContent = `${confidence}%`;
+                    uploadStatus.textContent = 'Analysis complete';
+                } else {
+                    uploadStatus.textContent = 'Error analyzing audio';
+                    console.error('Server error:', data.error);
+                }
+            } catch (err) {
+                uploadStatus.textContent = 'Error connecting to server';
+                console.error('Error sending audio:', err);
+            }
+        });
+
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script> 
+</body>
+</html>

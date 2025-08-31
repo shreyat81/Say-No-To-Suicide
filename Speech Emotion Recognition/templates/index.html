@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EmoVoice</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">EmoVoice</div>
+    <div class="nav-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('technical') }}">Technical</a>
+      <a href="{{ url_for('demo') }}">Demo</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('risk_dashboard') }}">Risk Dashboard</a>
+      <a href="{{ url_for('admin_panel') }}">Admin</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <img src="{{ url_for('static', filename='IMAGES/EMOTION FACES.jpg') }}" alt="Emotion Analysis" class="hero-img" />
+    <div class="hero-text">
+      <h1>We Decode Emotions Through Voice</h1>
+      <p>Empowering Communication, One Emotion at a Time</p>
+      <a href="{{url_for('demo')}}"><button class="cta">Try It Now</button></a>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-header">
+      <h2>Revolutionary Features</h2>
+      <p>Experience the future of emotion recognition technology</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+            </svg>
+          </div>
+        </div>
+        <div class="feature-content">
+          <h3>Real-Time Emotion Detection</h3>
+          <p>Experience instant emotion recognition with our advanced voice analysis system. Process emotions in milliseconds with minimal latency.</p>
+          <div class="feature-highlights">
+            <div class="highlight">
+              <span class="highlight-icon">⚡</span>
+              <span class="highlight-text">Instant Processing</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon">📊</span>
+              <span class="highlight-text">Live Tracking</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon">🔄</span>
+              <span class="highlight-text">Continuous Monitoring</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="feature-content">
+          <h3>High Accuracy</h3>
+          <p>Achieve unprecedented accuracy in emotion detection with our state-of-the-art machine learning models.</p>
+          <div class="feature-highlights">
+            <div class="highlight">
+              <span class="highlight-icon">🎯</span>
+              <span class="highlight-text">94% Accuracy</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon">🧠</span>
+              <span class="highlight-text">Advanced ML</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon">📈</span>
+              <span class="highlight-text">Continuous Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="feature-content">
+          <h3>User-Friendly Interface</h3>
+          <p>Intuitive design that makes emotion analysis accessible to everyone, from beginners to professionals.</p>
+          <div class="feature-highlights">
+            <div class="highlight">
+              <span class="highlight-icon">🎨</span>
+              <span class="highlight-text">Simple Design</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon">📱</span>
+              <span class="highlight-text">Easy Navigation</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon">⚡</span>
+              <span class="highlight-text">Quick Setup</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #4f46e5;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #4f46e5;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: #4f46e5;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after, .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .hero {
+      position: relative;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-text p {
+      font-size: 24px;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .features {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      position: relative;
+    }
+
+    .features-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+
+    .features-header h2 {
+      font-size: 36px;
+      color: #1f2937;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .features-header p {
+      font-size: 18px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #6366f1, #4f46e5);
+    }
+
+    .feature-icon {
+      margin-bottom: 30px;
+    }
+
+    .icon-wrapper {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transform: rotate(-10deg);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .icon-wrapper {
+      transform: rotate(0deg);
+    }
+
+    .feature-content h3 {
+      color: #1f2937;
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .feature-content p {
+      color: #6b7280;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .feature-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .highlight {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: #f8fafc;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .highlight:hover {
+      background: #f1f5f9;
+      transform: translateX(5px);
+    }
+
+    .highlight-icon {
+      font-size: 20px;
+    }
+
+    .highlight-text {
+      font-size: 14px;
+      color: #4b5563;
+      font-weight: 500;
+    }
+
+    footer {
+      background: #1f2937;
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-links a {
+      color: #e5e7eb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #6366f1;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .social-link {
+      color: #e5e7eb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: #6366f1;
+    }
+
+    .copyright {
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 5%;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .hero-text h1 {
+        font-size: 36px;
+      }
+
+      .hero-text p {
+        font-size: 18px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        padding: 30px;
+      }
+
+      .feature-highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('technical') }}">Technical</a>
+      <a href="{{ url_for('demo') }}">Demo</a>
+      <a href="{{ url_for('about') }}">About</a>
+      </div>
+      <!-- <div class="social-links">
+        <a href="#" class="social-link">Facebook</a>
+        <a href="#" class="social-link">Twitter</a>
+        <a href="#" class="social-link">LinkedIn</a>
+      </div> -->
+      <p class="copyright">&copy; 2025 EmoVoice. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll-triggered animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    // Observe elements
+    observer.observe(document.querySelector('.features-header'));
+    observer.observe(document.querySelector('.features-grid'));
+  </script>
+
+</body>
+</html>
