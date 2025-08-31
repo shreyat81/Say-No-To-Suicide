@@ -94,8 +94,17 @@ print(f"Suicidal probability: {result['score']:.2f}")
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## Screenshots
+
+![Training Screenshot](assets/training.png)
+
+
+
+
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 ## Disclaimer
 This project is for educational and research purposes only. It is not intended to be used as a substitute for professional medical advice, diagnosis, or treatment.
