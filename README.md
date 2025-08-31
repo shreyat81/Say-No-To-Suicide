@@ -96,7 +96,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Screenshots
 
-![Training Screenshot](assets/training.png)
+![Youtube link](https://youtu.be/rVTI896q51Y)
 
 
 
